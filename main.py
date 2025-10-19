@@ -341,7 +341,7 @@ def main():
                        choices=['vit_h', 'vit_l', 'vit_b'],
                        help='SAM model type (default: vit_h)')
     parser.add_argument('--sam_checkpoint', type=str, 
-                       default='/home/alexandre/IO/Data/Models/sam_vit_h_4b8939.pth',
+                       default='./Modelos/sam_vit_h_4b8939.pth',
                        help='Path to SAM model checkpoint')
     
     # SAM parameters
@@ -390,8 +390,8 @@ def main():
                        help='Skip statistics computation phase')
     parser.add_argument('--skip_regression', action='store_true',
                        help='Skip regression analysis phase')
-    parser.add_argument('--regression_model', type=str, default='./Modelos/huber_neural_network_model.pth',
-                       help='Path to regression model file (default: ./Modelos/huber_neural_network_model.pth)')
+    parser.add_argument('--regression_model', type=str, default='./Modelos/regression_network.pth',
+                       help='Path to regression model file (default: ./Modelos/regression_network.pth)')
     parser.add_argument('--segmentation_output_folder', type=str, default=None,
                        help='Path to existing segmentation output folder (used with --skip_segmentation)')
     
@@ -481,8 +481,8 @@ def main():
         print(f"\n🎉 Complete pipeline finished successfully!")
         print(f"📁 Segmentation outputs: {segmentation_output_folder}")
         print(f"📁 Inference outputs: {inference_output_folder}")
-        print(f"📁 Binary masks: ./outputs/binary_masks")
-        print(f"📁 Input images: ./outputs/input_images")
+        print(f"📁 Binary masks: /app/outputs/binary_masks")
+        print(f"📁 Input images: /app/outputs/input_images")
     else:
         print(f"\n🎉 Segmentation phase completed successfully!")
         print(f"📁 Segmentation outputs: {segmentation_output_folder}")

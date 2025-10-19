@@ -7,8 +7,8 @@ from pathlib import Path
 import glob
 import argparse
 
-# Input folder path
-input_folder = "/home/alexandre/Local/Data/Casco"
+# Input folder path (default - can be overridden via command line)
+input_folder = "./inputs"
 
 # Default SAM generator parameters
 DEFAULT_SAM_PARAMS = {
@@ -69,18 +69,18 @@ def parse_arguments():
     # Other options
     parser.add_argument('--input_folder', type=str, default=input_folder,
                        help=f'Input folder path (default: {input_folder})')
-    parser.add_argument('--output_folder', type=str, default='./outputs/Mexilhao_SAM_Output',
-                       help='Output folder path (default: ./outputs/Mexilhao_SAM_Output)')
+    parser.add_argument('--output_folder', type=str, default='/app/outputs/Mexilhao_SAM_Output',
+                       help='Output folder path (default: /app/outputs/Mexilhao_SAM_Output)')
     parser.add_argument('--model_type', type=str, default='vit_h',
                        choices=['vit_h', 'vit_l', 'vit_b'],
                        help='SAM model type (default: vit_h)')
     parser.add_argument('--checkpoint_path', type=str, 
-                       default='/home/alexandre/IO/Data/Models/sam_vit_h_4b8939.pth',
+                       default='./Modelos/sam_vit_h_4b8939.pth',
                        help='Path to SAM model checkpoint')
     
     return parser.parse_args()
 
-def load_sam_model(model_type="vit_h", checkpoint_path="/home/alexandre/IO/Data/Models/sam_vit_h_4b8939.pth"):
+def load_sam_model(model_type="vit_h", checkpoint_path="./Modelos/sam_vit_h_4b8939.pth"):
     """
     Load the SAM model. You'll need to download the model checkpoint first.
     """
@@ -360,7 +360,13 @@ def main():
     
     # Create output folder
     output_folder = args.output_folder
-    os.makedirs(output_folder, exist_ok=True)
+    try:
+        os.makedirs(output_folder, exist_ok=True)
+    except PermissionError:
+        print(f"Error: Permission denied when creating output folder {output_folder}")
+        print("This might be due to Docker volume permissions.")
+        print("Try running the Docker command with proper volume permissions or check the mounted directory.")
+        return
     
     # Prepare SAM parameters
     sam_params = {

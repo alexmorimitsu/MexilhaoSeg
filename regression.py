@@ -166,7 +166,7 @@ def apply_regression_to_csv(model_path, statistics_csv, output_csv):
     result_df = pd.DataFrame({
         'Imagem': df['filename'].str.replace('_mask_labels.npy', '', regex=False),
         'Área de cobertura': df['coverage_percentage'],
-        'Número de mexilhões (previsto)': predictions_np
+        'Número de mexilhões (previsto)': np.round(predictions_np).astype(int)
     })
     
     # Create output directory if it doesn't exist
@@ -179,8 +179,8 @@ def apply_regression_to_csv(model_path, statistics_csv, output_csv):
     
     print(f"\nResults saved to: {output_csv}")
     print(f"Added regression predictions for {len(predictions_np)} samples")
-    print(f"Prediction range: {predictions_np.min():.3f} to {predictions_np.max():.3f}")
-    print(f"Mean prediction: {predictions_np.mean():.3f}")
+    print(f"Prediction range: {np.round(predictions_np).astype(int).min()} to {np.round(predictions_np).astype(int).max()}")
+    print(f"Mean prediction: {np.round(predictions_np.mean()).astype(int)}")
     
     return result_df
 
