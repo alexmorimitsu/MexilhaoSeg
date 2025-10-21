@@ -328,11 +328,11 @@ def main():
     """
     parser = argparse.ArgumentParser(description='Run complete segmentation and inference pipeline')
     
-    # Required arguments
-    parser.add_argument('--input_folder', type=str, required=True,
-                       help='Path to input folder containing images')
-    parser.add_argument('--yolo_model', type=str, required=True,
-                       help='Path to trained YOLO model weights (.pt file)')
+    # Main arguments
+    parser.add_argument('--input_folder', type=str, default='./Imagens',
+                       help='Path to input folder containing images (default: ./Imagens)')
+    parser.add_argument('--yolo_model', type=str, default='./Modelos/yolo_mexilhoes.pt',
+                       help='Path to trained YOLO model weights (.pt file) (default: ./Modelos/yolo_mexilhoes.pt)')
     parser.add_argument('--binary_fills_folder', type=str, default=None,
                        help='Path to folder containing binary fills (optional - will auto-detect from YOLO binary masks if not provided)')
     
