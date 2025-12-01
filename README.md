@@ -30,3 +30,11 @@ Uma pasta *outputs* será criada com os resultados das segmentações estimativa
 
 ## Exemplo de instalação e execução no Google Colab
 Explicações de como instalar e executar este código no Google Colab podem ser encontrados no link https://colab.research.google.com/drive/1SZ4I14FfFAz9zzDoKNsekAZZHbzQ9-wO?usp=sharing
+
+## Licença
+
+Este projeto é de código aberto e está sob a licença **AGPL 3.0**.
+
+[![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
+
+Consulte o arquivo [LICENSE](LICENSE) para mais detalhes.
